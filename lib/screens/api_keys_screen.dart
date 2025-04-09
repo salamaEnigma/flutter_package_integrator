@@ -142,7 +142,7 @@ class ApiKeysScreen extends ConsumerWidget {
                     ),
                     child: const Text(
                       'Skip this step',
-                      style: TextStyle(fontSize: 16),
+                      style: TextStyle(fontSize: 16, color: Colors.white),
                     ),
                   ),
                 ),

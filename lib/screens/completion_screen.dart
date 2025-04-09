@@ -126,7 +126,10 @@ class CompletionScreen extends ConsumerWidget {
                       padding: const EdgeInsets.symmetric(vertical: 16),
                       backgroundColor: Colors.blueGrey,
                     ),
-                    child: const Text('Exit', style: TextStyle(fontSize: 16)),
+                    child: const Text(
+                      'Exit',
+                      style: TextStyle(fontSize: 16, color: Colors.white),
+                    ),
                   ),
                 ),
               ],
