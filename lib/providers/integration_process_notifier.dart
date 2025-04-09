@@ -1,8 +1,8 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:package_integrator/providers/integeration_progress_providers.dart';
-import 'package:package_integrator/providers/integeration_state_notifier.dart';
+import 'package:package_integrator/providers/integration_progress_providers.dart';
+import 'package:package_integrator/providers/integration_state_notifier.dart';
 import 'package:package_integrator/providers/api_keys_notifier.dart';
 import 'package:package_integrator/models/integration_state_model.dart';
 
