@@ -53,60 +53,10 @@ class PlatformConfigService {
   // Configure iOS platform for Google Maps
   Future<bool> configureIOS(String projectPath, String apiKey) async {
     try {
-      bool plistUpdated = await _updateInfoPlist(projectPath, apiKey);
       bool delegateUpdated = await _updateAppDelegate(projectPath, apiKey);
-
-      return plistUpdated && delegateUpdated;
+      return delegateUpdated;
     } catch (e) {
       log('Error configuring iOS: $e');
-      return false;
-    }
-  }
-
-  // Update Info.plist file
-  Future<bool> _updateInfoPlist(String projectPath, String apiKey) async {
-    try {
-      final plistPath = '$projectPath/ios/Runner/Info.plist';
-      final plistFile = File(plistPath);
-
-      if (!await plistFile.exists()) {
-        log('Info.plist not found at path: $plistPath');
-        return false;
-      }
-
-      String content = await plistFile.readAsString();
-
-      // Check if already configured
-      if (!content.contains('GMSApiKey')) {
-        // Find end of dict tag for insertion
-        final dictCloseIndex = content.lastIndexOf('</dict>');
-
-        if (dictCloseIndex == -1) {
-          log('Closing dict tag not found in Info.plist');
-          return false;
-        }
-
-        // Add required keys - Note: io.flutter.embedded_views_preview is no longer needed
-        String insertion = '''
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>This app needs access to location when open.</string>
-	<key>NSLocationAlwaysUsageDescription</key>
-	<string>This app needs access to location when in the background.</string>
-	<key>GMSApiKey</key>
-	<string>$apiKey</string>
-''';
-
-        content =
-            content.substring(0, dictCloseIndex) +
-            insertion +
-            content.substring(dictCloseIndex);
-
-        await plistFile.writeAsString(content);
-      }
-
-      return true;
-    } catch (e) {
-      log('Error updating Info.plist: $e');
       return false;
     }
   }
@@ -191,4 +141,52 @@ class PlatformConfigService {
       return false;
     }
   }
+
+  //   // Update Info.plist file
+  //   Future<bool> _updateInfoPlist(String projectPath, String apiKey) async {
+  //     try {
+  //       final plistPath = '$projectPath/ios/Runner/Info.plist';
+  //       final plistFile = File(plistPath);
+
+  //       if (!await plistFile.exists()) {
+  //         log('Info.plist not found at path: $plistPath');
+  //         return false;
+  //       }
+
+  //       String content = await plistFile.readAsString();
+
+  //       // Check if already configured
+  //       if (!content.contains('GMSApiKey')) {
+  //         // Find end of dict tag for insertion
+  //         final dictCloseIndex = content.lastIndexOf('</dict>');
+
+  //         if (dictCloseIndex == -1) {
+  //           log('Closing dict tag not found in Info.plist');
+  //           return false;
+  //         }
+
+  //         // Add required keys - Note: io.flutter.embedded_views_preview is no longer needed
+  //         String insertion = '''
+  // 	<key>NSLocationWhenInUseUsageDescription</key>
+  // 	<string>This app needs access to location when open.</string>
+  // 	<key>NSLocationAlwaysUsageDescription</key>
+  // 	<string>This app needs access to location when in the background.</string>
+  // 	<key>GMSApiKey</key>
+  // 	<string>$apiKey</string>
+  // ''';
+
+  //         content =
+  //             content.substring(0, dictCloseIndex) +
+  //             insertion +
+  //             content.substring(dictCloseIndex);
+
+  //         await plistFile.writeAsString(content);
+  //       }
+
+  //       return true;
+  //     } catch (e) {
+  //       log('Error updating Info.plist: $e');
+  //       return false;
+  //     }
+  //   }
 }

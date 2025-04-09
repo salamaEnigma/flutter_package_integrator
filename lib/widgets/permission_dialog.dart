@@ -68,7 +68,10 @@ class PermissionDialog extends StatelessWidget {
             _handleManualExecution(context);
           },
           style: ElevatedButton.styleFrom(backgroundColor: Colors.blue),
-          child: Text('Open Terminal', style: TextStyle(color: Colors.white)),
+          child: Text(
+            'Terminal Instructions',
+            style: TextStyle(color: Colors.white),
+          ),
         ),
       ],
     );
