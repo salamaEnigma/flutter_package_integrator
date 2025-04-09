@@ -3,8 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'dart:io';
 import 'package:flutter/services.dart';
 import 'package:package_integrator/providers/api_keys_notifier.dart';
-import 'package:package_integrator/providers/integeration_state_provider.dart';
-import '../providers/providers.dart';
+import 'package:package_integrator/providers/integration_progress_providers.dart';
+import 'package:package_integrator/providers/integration_state_notifier.dart';
 import '../widgets/step_indicator.dart';
 
 class CompletionScreen extends ConsumerWidget {

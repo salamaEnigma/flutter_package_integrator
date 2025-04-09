@@ -60,7 +60,7 @@ class _GoogleMapsExampleState extends State<GoogleMapsExample> {
 ''';
   }
 
-  // Optionally modify main.dart to include the example
+  // Update main.dart to directly use GoogleMapsExample
   Future<bool> updateMainDart(String projectPath) async {
     try {
       final mainFilePath = '$projectPath/lib/main.dart';
@@ -71,23 +71,36 @@ class _GoogleMapsExampleState extends State<GoogleMapsExample> {
         return false;
       }
 
-      String content = await mainFile.readAsString();
+      // Create a completely new main.dart file with just the GoogleMapsExample
+      final newMainContent = '''
+import 'package:flutter/material.dart';
+import 'google_maps_example.dart';
 
-      // Add import if not present
-      if (!content.contains('google_maps_example.dart')) {
-        final lastImport = content.lastIndexOf('import');
-        if (lastImport == -1) {
-          log('No import statements found in main.dart');
-          return false;
-        }
+void main() {
+  runApp(const MyApp());
+}
 
-        final endOfImports = content.indexOf(';', lastImport) + 1;
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
 
-        content =
-            "${content.substring(0, endOfImports)}\nimport 'google_maps_example.dart';${content.substring(endOfImports)}";
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Google Maps Demo',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
+        useMaterial3: true,
+      ),
+      home: const GoogleMapsExample(),
+    );
+  }
+}
+''';
 
-        await mainFile.writeAsString(content);
-      }
+      // Replace the entire file content
+      await mainFile.writeAsString(newMainContent);
+      log('Replaced main.dart with simplified GoogleMapsExample version');
 
       return true;
     } catch (e) {

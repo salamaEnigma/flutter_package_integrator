@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:package_integrator/providers/api_keys_notifier.dart';
-import 'package:package_integrator/providers/integeration_state_provider.dart';
+import 'package:package_integrator/providers/integeration_state_notifier.dart';
 import '../widgets/step_indicator.dart';
 
 class ApiKeysScreen extends ConsumerWidget {

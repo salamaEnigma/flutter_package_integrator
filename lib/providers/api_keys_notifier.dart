@@ -1,6 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:package_integrator/models/api_key_model.dart';
-import 'package:package_integrator/providers/integeration_state_provider.dart';
+import 'package:package_integrator/providers/integeration_state_notifier.dart';
 
 final apiKeysNotifierProvider = NotifierProvider<ApiKeysNotifier, ApiKeys>(
   ApiKeysNotifier.new,

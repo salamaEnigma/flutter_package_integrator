@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:package_integrator/providers/integeration_state_provider.dart';
+import 'package:package_integrator/providers/integeration_state_notifier.dart';
 import '../models/integration_state_model.dart';
 import 'project_selection_screen.dart';
 import 'api_keys_screen.dart';

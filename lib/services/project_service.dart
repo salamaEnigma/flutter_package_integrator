@@ -122,7 +122,8 @@ class ProjectService {
                 result.stderr.toString().contains('Permission denied')) &&
             context != null) {
           log('Permission issue detected. Showing permission dialog...');
-          return await _showPermissionDialog(context, projectPath);
+          return context.mounted &&
+              await _showPermissionDialog(context, projectPath);
         } else {
           log(
             'PERMISSION_DIALOG: Please open Terminal and run the following command:',
@@ -143,7 +144,8 @@ class ProjectService {
         log(
           'Permission issue detected from exception. Showing permission dialog...',
         );
-        return await _showPermissionDialog(context, projectPath);
+        return context.mounted &&
+            await _showPermissionDialog(context, projectPath);
       } else {
         log(
           'PERMISSION_DIALOG: Please open Terminal and run the following command:',

@@ -2,7 +2,8 @@ import 'dart:developer';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:package_integrator/models/integration_state_model.dart';
-import 'package:package_integrator/providers/providers.dart';
+import 'package:package_integrator/providers/integration_progress_providers.dart';
+import 'package:package_integrator/providers/service_providers.dart';
 
 final integrationStateProvider =
     NotifierProvider<IntegrationStateNotifier, IntegrationState>(

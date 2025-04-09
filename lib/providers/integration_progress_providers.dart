@@ -1,29 +1,12 @@
+// State providers
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../models/project_model.dart';
-import '../services/project_service.dart';
-import '../services/platform_config_service.dart';
-import '../services/example_service.dart';
+import 'package:package_integrator/models/project_model.dart';
+import 'package:package_integrator/providers/service_providers.dart';
 
-// Service providers
-final projectServiceProvider = Provider<ProjectService>((ref) {
-  return ProjectService();
-});
-
-final platformConfigServiceProvider = Provider<PlatformConfigService>((ref) {
-  return PlatformConfigService();
-});
-
-final exampleServiceProvider = Provider<ExampleService>((ref) {
-  return ExampleService();
-});
-
-// State providers
 final selectedProjectProvider = StateProvider<FlutterProject?>((ref) {
   return null;
 });
-
-// Note: apiKeysProvider is now replaced by apiKeysNotifierProvider
 
 // Integration process providers
 final projectSelectionProvider = FutureProvider.autoDispose<String?>((
